@@ -87,6 +87,7 @@
             height: 90px;
             image-rendering: pixelated;
             margin-bottom: 6px;
+            mix-blend-mode: lighten;
         }
 
         .pokemon-card .pname {
@@ -139,9 +140,11 @@
         .earnings-table td {
             padding: 7px 12px;
             border: 1px solid #2a2a2a;
+            background: #1a1a1a;
+            color: #d0d0d0;
         }
 
-        .earnings-table tr:nth-child(even) td { background: #161616; }
+        .earnings-table tr:nth-child(even) td { background: #222; color: #d0d0d0; }
 
         /* Region header */
         .region-header {
@@ -198,6 +201,7 @@
             image-rendering: pixelated;
             margin: 3px 4px;
             vertical-align: middle;
+            mix-blend-mode: lighten;
         }
 
         .fight-section.alt {
@@ -433,7 +437,7 @@
 
 <h1>3. Fortree City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/6/6a/Hoenn_Fortree_City_Map.png" alt="Fortree">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/f/f5/Hoenn_Fortree_City_Map.png" alt="Fortree">
     <div class="gym-info"><u><b>Gym Leader: Winona</b></u></div>
 </div>
 
@@ -469,7 +473,7 @@
 
 <h1>5. Petalburg City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/7/72/Hoenn_Petalburg_City_Map.png" alt="Petalburg">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/4/4b/Hoenn_Petalburg_City_Map.png" alt="Petalburg">
     <div class="gym-info"><u><b>Gym Leader: Norman</b></u></div>
 </div>
 
@@ -594,7 +598,7 @@
 
 <h1>13. Icirrus City <span style="font-size:1rem; color:#aaa;">(Ice)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/8/83/Unova_Icirrus_City_Map.png" alt="Icirrus">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/0/04/Unova_Icirrus_City_Map.png" alt="Icirrus">
     <div class="gym-info"><u><b>Gym Leader: Brycen</b></u></div>
 </div>
 
@@ -630,7 +634,7 @@
 
 <h1>15. Violet City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/1/1f/Johto_Violet_City_Map.png" alt="Violet">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/2/2c/Johto_Violet_City_Map.png" alt="Violet">
     <div class="gym-info"><u><b>Gym Leader: Falkner</b></u></div>
 </div>
 
@@ -674,7 +678,7 @@
 
 <h1>18. Azalea Town <span style="font-size:1rem; color:#aaa;">(Bug)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/3/30/Johto_Azalea_Town_Map.png" alt="Azalea">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/b/b0/Johto_Azalea_Town_Map.png" alt="Azalea">
     <div class="gym-info"><u><b>Gym Leader: Bugsy</b></u></div>
 </div>
 
@@ -774,7 +778,7 @@
 
 <h1>23. Sunyshore City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/7/74/Sinnoh_Sunyshore_City_Map.png" alt="Sunyshore">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/5/5a/Sinnoh_Sunyshore_City_Map.png" alt="Sunyshore">
     <div class="gym-info"><u><b>Gym Leader: Volkner</b></u></div>
 </div>
 
@@ -874,7 +878,7 @@
 
 <h1>27. Cerulean City <span style="font-size:1rem; color:#aaa;">(Water)</span></h1>
 <div class="gym-card">
-    <img class="map" src="https://archives.bulbagarden.net/media/upload/3/38/Kanto_Cerulean_City_Map.png" alt="Cerulean">
+    <img class="map" src="https://archives.bulbagarden.net/media/upload/2/29/Kanto_Cerulean_City_Map.png" alt="Cerulean">
     <div class="gym-info"><u><b>Gym Leader: Misty</b></u></div>
 </div>
 
@@ -920,5 +924,18 @@
     </div>
 </div>
 
+<script>
+// Fallback for any map images that fail to load
+document.querySelectorAll('img.map').forEach(img => {
+    img.onerror = function() {
+        this.onerror = null;
+        this.style.display = 'none';
+        const ph = document.createElement('div');
+        ph.style.cssText = 'width:220px;height:120px;background:#1a1a1a;border:2px solid #c47c00;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#555;font-size:0.8rem;flex-shrink:0;';
+        ph.textContent = '📍 ' + this.alt + ' Map';
+        this.parentNode.insertBefore(ph, this);
+    };
+});
+</script>
 </body>
 </html>
