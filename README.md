@@ -691,7 +691,7 @@
     <b>Lead:</b> <span class="arch">Archeops</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><br>
-    <span class="arch">Rock Slide</span> + <span class="typh">Eruption / Lava Plume</span>
+    <span class="arch">Rock Slide</span> + <span class="typh">Eruption </span>
 </div>
 
 <div class="fight-section alt">
@@ -714,7 +714,7 @@
     <b>Lead:</b> <span class="heat">Heatran</span> + <span class="blast">Blastoise</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><br>
-    <span class="heat">Eruption / Lava Plume</span> + <span class="blast">Water Spout</span>
+    <span class="heat">Eruption</span> + <span class="blast">Water Spout</span>
 </div>
 
 <h1>5. Petalburg City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
@@ -749,7 +749,7 @@
     <b>Lead:</b> <span class="blast">Blastoise</span> + <span class="heat">Heatran</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><br>
-    <span class="blast">Water Spout</span> + <span class="heat">Eruption / Lava Plume</span>
+    <span class="blast">Water Spout</span> + <span class="heat">Eruption </span>
 </div>
 <div class="note">If hurt from Accelgor team, heal here.</div>
 
@@ -763,7 +763,7 @@
     <b>Lead:</b> <span class="blast">Blastoise</span> + <span class="heat">Heatran</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><br>
-    <span class="blast">Water Spout</span> + <span class="heat">Eruption / Lava Plume</span>
+    <span class="blast">Water Spout</span> + <span class="heat">Eruption</span>
 </div>
 <div class="note">Chance at Heatran getting hurt — continue if so.</div>
 
@@ -777,7 +777,7 @@
     <b>T1 Lead:</b> <span class="tork">Torkoal</span> + <span class="arch">Archeops</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif" alt="Torkoal">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><br>
-    <span class="tork">Explosion</span> + <span class="arch">Rock Slide / Tailwind</span><br>
+    <span class="tork">Explosion</span> + <span class="arch">Rock Slide </span><br>
     <b>Send in:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion">
@@ -824,7 +824,7 @@
     <b>Lead:</b> <span class="tork">Torkoal (Helping Hand)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif" alt="Torkoal">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><br>
-    <span class="tork">Helping Hand</span> + <span class="typh">Eruption / Lava Plume</span>
+    <span class="tork">Helping Hand</span> + <span class="typh">Eruption</span>
 </div>
 <div class="note">If Blastoise is hurt from the fire leader, PC Reset.</div>
 
@@ -902,7 +902,7 @@
     <b>Lead:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><br>
-    <span class="heat">Lava Plume</span> + <span class="typh">Eruption / Lava Plume</span>
+    <span class="heat">Lava Plume</span> + <span class="typh">Eruption </span>
 </div>
 <div class="note">⚠️ If frozen from Blizzard, use Ice Heal on the frozen one's turn.</div>
 
@@ -918,7 +918,7 @@
     <b>Lead:</b> <span class="heat">Heatran</span> + <span class="blast">Blastoise</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><br>
-    <span class="heat">Eruption / Lava Plume</span> + <span class="blast">Water Spout</span>
+    <span class="heat">Eruption </span> + <span class="blast">Water Spout</span>
 </div>
 <div class="note">⭐ Put <b>Heatran on the LEFT side</b> (above Blastoise in team order) — Ditto changed transform target after Halloween 2025 update.<br>Chance at Heatran getting hurt — continue if so.</div>
 
@@ -1004,7 +1004,7 @@
     <b>Lead:</b> <span class="arch">Archeops</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><br>
-    <span class="arch">Rock Slide</span> + <span class="typh">Eruption / Lava Plume</span>
+    <span class="arch">Rock Slide</span> + <span class="typh">Eruption </span>
 </div>
 <div class="note">Chance at Arch getting hurt — continue if so, or heal if KO'd.</div>
 
@@ -1056,7 +1056,7 @@
     <b>T1 Lead:</b> <span class="tork">Torkoal</span> + <span class="arch">Archeops</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif" alt="Torkoal">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><br>
-    <span class="tork">Explosion</span> + <span class="arch">Rock Slide / Tailwind</span><br>
+    <span class="tork">Explosion</span> + <span class="arch">Rock Slide</span><br>
     <b>Send in:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion">
@@ -1078,7 +1078,7 @@
     <b>Lead:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><br>
-    <span class="heat">Lava Plume</span> + <span class="typh">Eruption / Lava Plume</span>
+    <span class="heat">Lava Plume</span> + <span class="typh">Eruption </span>
 </div>
 
 <div class="fight-section alt">
@@ -1132,7 +1132,7 @@
     <b>T1 Lead:</b> <span class="tork">Torkoal</span> + <span class="arch">Archeops</span> or <span class="blast">Blastoise</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif" alt="Torkoal">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><br>
-    <span class="tork">Explosion</span> + <span class="arch">Rock Slide / Tailwind</span><br>
+    <span class="tork">Explosion</span> + <span class="arch">Rock Slide </span><br>
     <b>Send in:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span>
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion">
