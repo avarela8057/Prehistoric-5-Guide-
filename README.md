@@ -213,7 +213,13 @@
         }
 
         .map-wrap { flex: 0 0 220px; }
-        .map-wrap .map { display: block !important; width: 100% !important; }
+        .map-wrap .map {
+            display: block !important;
+            width: 100% !important;
+            aspect-ratio: 352 / 223;
+            object-fit: contain;
+            background: #101a16;
+        }
         .map-caption {
             display: block;
             margin-top: 7px;
@@ -326,6 +332,193 @@
             h1 { font-size: 2rem; }
             .region-header { font-size: 1.6rem; }
         }
+
+        /* Premium prehistoric redesign */
+        :root {
+            --ink: #edf5e8;
+            --muted: #a6b5a4;
+            --ember: #ffb33f;
+            --amber: #e78019;
+            --moss: #83b84d;
+            --deep: #07100e;
+            --panel: rgba(18, 31, 26, .86);
+            --line: rgba(255, 185, 72, .22);
+            --shadow: 0 22px 70px rgba(0, 0, 0, .4);
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+        body {
+            min-height: 100vh;
+            padding: 0 24px 70px;
+            overflow-x: hidden;
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at 12% 8%, rgba(231,128,25,.16), transparent 28rem),
+                radial-gradient(circle at 92% 22%, rgba(93,143,73,.13), transparent 34rem),
+                linear-gradient(160deg, #07100e 0%, #0b1512 46%, #080b0a 100%);
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .24;
+            background-image: linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+            background-size: 38px 38px;
+            mask-image: linear-gradient(to bottom, #000, transparent 75%);
+        }
+        body > *:not(.sticky-div) { width: min(1120px, 100%); margin-left: auto; margin-right: auto; }
+
+        .sticky-div {
+            width: min(1180px, calc(100% - 24px));
+            margin: 12px auto 34px;
+            top: 12px;
+            padding: 13px 18px;
+            border: 1px solid rgba(255,179,63,.26);
+            border-radius: 18px;
+            background: rgba(7, 16, 14, .82);
+            box-shadow: 0 12px 40px rgba(0,0,0,.35);
+            backdrop-filter: blur(18px) saturate(140%);
+        }
+        .sticky-div h2 { font-size: clamp(1rem, 2vw, 1.28rem); color: #ffd178; letter-spacing: -.02em; }
+        .sticky-div span { margin-left: auto; color: var(--muted); }
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 360px;
+            display: grid;
+            align-content: center;
+            padding: clamp(40px, 7vw, 86px);
+            margin-bottom: 42px;
+            border: 1px solid var(--line);
+            border-radius: 32px;
+            background: linear-gradient(120deg, rgba(21,40,31,.96), rgba(9,18,16,.88));
+            box-shadow: var(--shadow);
+        }
+        .hero::before {
+            content: "🦕";
+            position: absolute;
+            z-index: -1;
+            right: clamp(-30px, 2vw, 30px);
+            bottom: -84px;
+            font-size: clamp(15rem, 32vw, 29rem);
+            line-height: 1;
+            opacity: .09;
+            transform: rotate(-8deg);
+            filter: grayscale(1);
+        }
+        .eyebrow { color: #a8ce79; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: .76rem; }
+        .hero h1 {
+            max-width: 760px;
+            margin: 12px 0 14px;
+            padding: 0;
+            border: 0;
+            color: #fff3d6;
+            font-size: clamp(3.1rem, 8vw, 6.8rem);
+            line-height: .9;
+            letter-spacing: -.065em;
+            text-transform: none;
+            text-wrap: balance;
+        }
+        .hero p { max-width: 680px; color: #c6d1c4; font-size: clamp(1rem, 2vw, 1.18rem); }
+        .hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .hero-stats span { padding: 9px 13px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(255,255,255,.055); color: #e9efe6; font-size: .83rem; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+        .guide-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 17px;
+            border: 1px solid rgba(255,198,98,.48);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f2a52f, #d56e16);
+            box-shadow: 0 10px 28px rgba(213,110,22,.25);
+            color: #171008;
+            font-size: .9rem;
+            font-weight: 850;
+            text-decoration: none;
+        }
+        .guide-button:hover, .guide-button:focus-visible { color: #171008; transform: translateY(-2px); box-shadow: 0 14px 34px rgba(213,110,22,.34); }
+        .guide-credit { align-self: center; color: #9fad9d; font-size: .78rem; }
+
+        h2 { margin-top: 38px; color: #ffd178; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.025em; }
+        h1:not(.hero h1) {
+            margin: 58px auto 18px;
+            padding: 20px 23px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: linear-gradient(100deg, rgba(231,128,25,.12), rgba(255,255,255,.015));
+            color: #ffd178;
+            font-size: clamp(1.35rem, 3.5vw, 2.35rem);
+            letter-spacing: -.025em;
+            box-shadow: 0 12px 34px rgba(0,0,0,.18);
+        }
+        .region-header {
+            position: relative;
+            margin-top: 90px;
+            padding: 30px;
+            border: 0;
+            color: #fff0cf;
+            font-size: clamp(2.2rem, 7vw, 4.8rem);
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-shadow: 0 0 35px rgba(255,179,63,.18);
+        }
+        .region-header::after { content: ""; display: block; width: 72px; height: 4px; margin: 14px auto 0; border-radius: 4px; background: linear-gradient(90deg,var(--amber),var(--ember)); }
+        hr { opacity: 0; height: 0; margin: 0; }
+
+        .pokemon-container { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+        .pokemon-card, .gym-card, .credits-section {
+            border: 1px solid rgba(255,255,255,.09);
+            background: var(--panel);
+            box-shadow: 0 15px 45px rgba(0,0,0,.24);
+            backdrop-filter: blur(10px);
+        }
+        .pokemon-card { position: relative; overflow: hidden; padding: 24px 16px; border-radius: 22px; transition: transform .25s ease, border-color .25s ease; }
+        .pokemon-card::after { content: ""; position: absolute; inset: auto -30% -80px; height: 130px; background: radial-gradient(ellipse, rgba(255,179,63,.15), transparent 67%); }
+        .pokemon-card:hover { transform: translateY(-6px); border-color: rgba(255,179,63,.32); }
+        .pokemon-card img { width: 108px; height: 108px; filter: drop-shadow(0 14px 15px rgba(0,0,0,.36)); transition: transform .25s ease; }
+        .pokemon-card:hover img { transform: scale(1.08); }
+        .pokemon-card .pname { font-size: 1.16rem; }
+
+        .gym-card { padding: 22px; border-radius: 22px; gap: 25px; transition: border-color .25s ease, transform .25s ease; }
+        .gym-card:hover { border-color: rgba(255,179,63,.28); transform: translateY(-2px); }
+        .gym-card img.map { border: 0; border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,.34); }
+        .map-caption { color: #f2b85c; }
+        .gym-card .gym-info u { text-decoration-color: var(--amber); text-underline-offset: 5px; }
+        .gym-card .gym-info u b { font-size: 1.08rem; }
+
+        .fight-section { padding: 18px 20px; border: 1px solid rgba(255,255,255,.07); border-left: 4px solid var(--amber); border-radius: 14px; background: rgba(4,10,8,.58); }
+        .fight-section img { width: 66px; height: 66px; filter: drop-shadow(0 8px 8px rgba(0,0,0,.4)); }
+        .note, .pc-reset, .heal-banner, .caution-box, .bonus-box { border-radius: 16px; }
+        .note { padding: 14px 17px; background: rgba(255,179,63,.065); border-left-color: var(--ember); }
+        .pc-reset { padding: 15px; border: 1px solid rgba(255,179,63,.38); background: linear-gradient(100deg, rgba(231,128,25,.18), rgba(255,179,63,.07)); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+        .caution-box { background: linear-gradient(135deg, rgba(85,48,6,.58), rgba(27,24,14,.7)); box-shadow: var(--shadow); }
+        .bonus-box { background: linear-gradient(135deg, rgba(28,64,79,.65), rgba(9,25,32,.75)); }
+
+        .earnings-table { overflow: hidden; border-collapse: separate; border-spacing: 0; border: 1px solid rgba(255,255,255,.09); border-radius: 16px; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+        .earnings-table th { padding: 13px; background: #18241f; border: 0; border-bottom: 1px solid var(--line); }
+        .earnings-table td { padding: 11px 13px; border: 0; border-bottom: 1px solid rgba(255,255,255,.05); background: rgba(14,25,21,.82); }
+        .earnings-table tr:nth-child(even) td { background: rgba(23,36,30,.82); }
+        a { transition: color .2s ease; }
+        ::selection { color: #101510; background: #f0b44d; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .hero { animation: reveal .7s both ease-out; }
+            @keyframes reveal { from { opacity: 0; transform: translateY(18px); } }
+        }
+        @media (max-width: 768px) {
+            body { padding-inline: 14px; }
+            .sticky-div { width: 100%; top: 6px; margin-top: 6px; border-radius: 14px; }
+            .sticky-div span { display: none; }
+            .hero { min-height: 330px; padding: 40px 24px; border-radius: 24px; }
+            .hero h1 { font-size: clamp(3.1rem, 18vw, 5rem); }
+            .gym-card { padding: 16px; }
+            .earnings-table { display: block; overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
@@ -334,6 +527,22 @@
     <h2>🦕 Prehistoric 5 – PokeMMO Gym Rerun</h2>
     <span>by JinxedBoon | 28-Gym Route Guide</span>
 </div>
+
+<header class="hero">
+    <div class="eyebrow">JinxedBoon’s original route</div>
+    <h1>Prehistoric 5</h1>
+    <p>A polished, battle-ready companion for the five-Pokémon PokeMMO gym rerun—covering every lead, swap, reset, and location across the complete 28-gym route.</p>
+    <div class="hero-stats">
+        <span>28 gyms</span>
+        <span>5 regions</span>
+        <span>5-Pokémon core</span>
+        <span>Map at every stop</span>
+    </div>
+    <div class="hero-actions">
+        <a class="guide-button" href="Prehistoric-5-Gym-Route-Original-Guide.pdf" target="_blank" rel="noopener">📄 View the original guide</a>
+        <span class="guide-credit">Original PDF provided by the route creator/community · Credit: JinxedBoon</span>
+    </div>
+</header>
 
 <!-- ═══════════════ TEAM ═══════════════ -->
 <h2>Requirements</h2>
@@ -478,7 +687,7 @@
     <b>Lead:</b> <span class="arch">Archeops</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/archeops.png" alt="Archeops">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/typhlosion.png" alt="Typhlosion"><br>
-    <span class="arch">Rock Slide</span> + <span class="typh">Eruption </span>
+    <span class="arch">Rock Slide</span> + <span class="typh">Eruption / Lava Plume</span>
 </div>
 
 <div class="fight-section alt">
@@ -501,12 +710,12 @@
     <b>Lead:</b> <span class="heat">Heatran</span> + <span class="blast">Blastoise</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/blastoise.png" alt="Blastoise"><br>
-    <span class="heat">Eruption </span> + <span class="blast">Water Spout</span>
+    <span class="heat">Eruption / Lava Plume</span> + <span class="blast">Water Spout</span>
 </div>
 
 <h1>5. Petalburg City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
 <div class="gym-card">
-    <img class="map" src="" data-filename="Hoenn_Petalburg_City_Map.png" alt="Petalburg" style="display:none">
+    <img class="map" src="https://archives.bulbagarden.net/wiki/Special:Redirect/file/Hoenn_Petalburg_City_Map.png" data-filename="Hoenn_Petalburg_City_Map.png" alt="Petalburg" loading="lazy">
     <div class="gym-info"><u><b>Gym Leader: Norman</b></u></div>
 </div>
 
@@ -536,7 +745,7 @@
     <b>Lead:</b> <span class="blast">Blastoise</span> + <span class="heat">Heatran</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/blastoise.png" alt="Blastoise">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran"><br>
-    <span class="blast">Water Spout</span> + <span class="heat">Eruption </span>
+    <span class="blast">Water Spout</span> + <span class="heat">Eruption / Lava Plume</span>
 </div>
 <div class="note">If hurt from Accelgor team, heal here.</div>
 
@@ -550,7 +759,7 @@
     <b>Lead:</b> <span class="blast">Blastoise</span> + <span class="heat">Heatran</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/blastoise.png" alt="Blastoise">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran"><br>
-    <span class="blast">Water Spout</span> + <span class="heat">Eruption </span>
+    <span class="blast">Water Spout</span> + <span class="heat">Eruption / Lava Plume</span>
 </div>
 <div class="note">Chance at Heatran getting hurt — continue if so.</div>
 
@@ -611,7 +820,7 @@
     <b>Lead:</b> <span class="tork">Torkoal (Helping Hand)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/torkoal.png" alt="Torkoal">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/typhlosion.png" alt="Typhlosion"><br>
-    <span class="tork">Helping Hand</span> + <span class="typh">Eruption </span>
+    <span class="tork">Helping Hand</span> + <span class="typh">Eruption / Lava Plume</span>
 </div>
 <div class="note">If Blastoise is hurt from the fire leader, PC Reset.</div>
 
@@ -689,7 +898,7 @@
     <b>Lead:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/typhlosion.png" alt="Typhlosion"><br>
-    <span class="heat">Lava Plume</span> + <span class="typh"> Eruption </span>
+    <span class="heat">Lava Plume</span> + <span class="typh">Eruption / Lava Plume</span>
 </div>
 <div class="note">⚠️ If frozen from Blizzard, use Ice Heal on the frozen one's turn.</div>
 
@@ -705,7 +914,7 @@
     <b>Lead:</b> <span class="heat">Heatran</span> + <span class="blast">Blastoise</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/blastoise.png" alt="Blastoise"><br>
-    <span class="heat">Eruption </span> + <span class="blast">Water Spout</span>
+    <span class="heat">Eruption / Lava Plume</span> + <span class="blast">Water Spout</span>
 </div>
 <div class="note">⭐ Put <b>Heatran on the LEFT side</b> (above Blastoise in team order) — Ditto changed transform target after Halloween 2025 update.<br>Chance at Heatran getting hurt — continue if so.</div>
 
@@ -791,7 +1000,7 @@
     <b>Lead:</b> <span class="arch">Archeops</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/archeops.png" alt="Archeops">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/typhlosion.png" alt="Typhlosion"><br>
-    <span class="arch">Rock Slide</span> + <span class="typh">Eruption </span>
+    <span class="arch">Rock Slide</span> + <span class="typh">Eruption / Lava Plume</span>
 </div>
 <div class="note">Chance at Arch getting hurt — continue if so, or heal if KO'd.</div>
 
@@ -865,7 +1074,7 @@
     <b>Lead:</b> <span class="heat">Heatran (Lava Plume)</span> + <span class="typh">Typhlosion</span><br>
     <img src="https://play.pokemonshowdown.com/sprites/gen5/heatran.png" alt="Heatran">
     <img src="https://play.pokemonshowdown.com/sprites/gen5/typhlosion.png" alt="Typhlosion"><br>
-    <span class="heat">Lava Plume</span> + <span class="typh">Eruption </span>
+    <span class="heat">Lava Plume</span> + <span class="typh">Eruption / Lava Plume</span>
 </div>
 
 <div class="fight-section alt">
