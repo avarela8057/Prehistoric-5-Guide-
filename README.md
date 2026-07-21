@@ -445,7 +445,7 @@
         .guide-credit { align-self: center; color: #9fad9d; font-size: .78rem; }
 
         h2 { margin-top: 38px; color: #ffd178; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.025em; }
-        h1:not(.hero h1) {
+        .gym-title {
             margin: 58px auto 18px;
             padding: 20px 23px;
             border: 1px solid var(--line);
@@ -456,6 +456,9 @@
             letter-spacing: -.025em;
             box-shadow: 0 12px 34px rgba(0,0,0,.18);
         }
+        /* GitHub/Jekyll may inject a repository-name H1 before this document.
+           Do not let it inherit the guide's gym-heading presentation. */
+        h1:first-child:not(.gym-title) { display: none; }
         .region-header {
             position: relative;
             margin-top: 90px;
@@ -523,6 +526,10 @@
             .gym-card { padding: 16px; }
             .earnings-table { display: block; overflow-x: auto; }
         }
+
+        /* The hero already contains the complete identity and credit line. */
+        .sticky-div { display: none; }
+        .hero { margin-top: clamp(16px, 3vw, 34px); }
     </style>
 </head>
 <body>
@@ -655,7 +662,7 @@
 <div class="region-header">HOENN</div>
 <hr>
 
-<h1>1. Lavaridge Town <span style="font-size:1rem; color:#aaa;">(Fire)</span></h1>
+<h1 class="gym-title">1. Lavaridge Town <span style="font-size:1rem; color:#aaa;">(Fire)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/9/93/Hoenn_Lavaridge_Town_Map.png" alt="Lavaridge">
     <div class="gym-info"><u><b>Gym Leader: Flannery</b></u></div>
@@ -668,7 +675,7 @@
     <span class="arch">Rock Slide</span> + <span class="blast">Water Spout</span>
 </div>
 
-<h1>2. Mauville City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
+<h1 class="gym-title">2. Mauville City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/a/a1/Hoenn_Mauville_City_Map.png" alt="Mauville">
     <div class="gym-info"><u><b>Gym Leader: Wattson</b></u></div>
@@ -681,7 +688,7 @@
     <span class="arch">Rock Slide</span> + <span class="heat">Eruption</span>
 </div>
 
-<h1>3. Fortree City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
+<h1 class="gym-title">3. Fortree City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Hoenn_Fortree_City_Map.png" alt="Fortree" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Winona</b></u></div>
@@ -704,7 +711,7 @@
 <div class="note">• Chance of Arch going down — replace Heatran's Plume, continue without PC Heal.<br>
 • If Torkoal paralyzed from Thunder: use Paralyze Heal after gym, or PC Heal.</div>
 
-<h1>4. Dewford Town <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
+<h1 class="gym-title">4. Dewford Town <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/d/d3/Hoenn_Dewford_Town_Map.png" alt="Dewford">
     <div class="gym-info"><u><b>Gym Leader: Brawly</b></u></div>
@@ -717,7 +724,7 @@
     <span class="heat">Eruption</span> + <span class="blast">Water Spout</span>
 </div>
 
-<h1>5. Petalburg City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
+<h1 class="gym-title">5. Petalburg City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/wiki/Special:Redirect/file/Hoenn_Petalburg_City_Map.png" data-filename="Hoenn_Petalburg_City_Map.png" alt="Petalburg" loading="lazy">
     <div class="gym-info"><u><b>Gym Leader: Norman</b></u></div>
@@ -739,7 +746,7 @@
 <div class="region-header">UNOVA</div>
 <hr>
 
-<h1>6. Castelia City <span style="font-size:1rem; color:#aaa;">(Bug)</span></h1>
+<h1 class="gym-title">6. Castelia City <span style="font-size:1rem; color:#aaa;">(Bug)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/9/96/Unova_Castelia_City_Map.png" alt="Castelia">
     <div class="gym-info"><u><b>Gym Leader: Burgh</b></u></div>
@@ -753,7 +760,7 @@
 </div>
 <div class="note">If hurt from Accelgor team, heal here.</div>
 
-<h1>7. Nimbasa City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
+<h1 class="gym-title">7. Nimbasa City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/1/1b/Unova_Nimbasa_City_Map.png" alt="Nimbasa">
     <div class="gym-info"><u><b>Gym Leader: Elesa</b></u></div>
@@ -767,7 +774,7 @@
 </div>
 <div class="note">Chance at Heatran getting hurt — continue if so.</div>
 
-<h1>8. Driftveil City <span style="font-size:1rem; color:#aaa;">(Ground)</span></h1>
+<h1 class="gym-title">8. Driftveil City <span style="font-size:1rem; color:#aaa;">(Ground)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/2/2f/Unova_Driftveil_City_Map.png" alt="Driftveil">
     <div class="gym-info"><u><b>Gym Leader: Clay</b></u></div>
@@ -787,7 +794,7 @@
 
 <h2 style="margin-top:30px; letter-spacing:2px;">STRIATON CITY</h2>
 
-<h1>9. Striaton – Fire <span style="font-size:1rem; color:#aaa;">(Chili)</span></h1>
+<h1 class="gym-title">9. Striaton – Fire <span style="font-size:1rem; color:#aaa;">(Chili)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/d/d7/Unova_Striaton_City_Map.png" alt="Striaton">
     <div class="gym-info"><u><b>Gym Leader: Chili</b></u></div>
@@ -801,7 +808,7 @@
 </div>
 <div class="note">If Blastoise is hurt from this gym, PC Reset before Striaton Grass.</div>
 
-<h1>10. Striaton – Grass <span style="font-size:1rem; color:#aaa;">(Cilan)</span></h1>
+<h1 class="gym-title">10. Striaton – Grass <span style="font-size:1rem; color:#aaa;">(Cilan)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/d/d7/Unova_Striaton_City_Map.png" alt="Striaton">
     <div class="gym-info"><u><b>Gym Leader: Cilan</b></u></div>
@@ -814,7 +821,7 @@
     <span class="heat">Lava Plume</span> + <span class="typh">Lava Plume</span>
 </div>
 
-<h1>11. Striaton – Water <span style="font-size:1rem; color:#aaa;">(Cress)</span></h1>
+<h1 class="gym-title">11. Striaton – Water <span style="font-size:1rem; color:#aaa;">(Cress)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/d/d7/Unova_Striaton_City_Map.png" alt="Striaton">
     <div class="gym-info"><u><b>Gym Leader: Cress</b></u></div>
@@ -828,7 +835,7 @@
 </div>
 <div class="note">If Blastoise is hurt from the fire leader, PC Reset.</div>
 
-<h1>12. Mistralton City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
+<h1 class="gym-title">12. Mistralton City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/6/62/Unova_Mistralton_City_Map.png" alt="Mistralton">
     <div class="gym-info"><u><b>Gym Leader: Skyla</b></u></div>
@@ -842,7 +849,7 @@
 </div>
 <div class="note">Chance of getting eject-buttoned — attack through it. If <b>Heatran or Typh dies</b>, PC Reset then continue and skip the next PC Reset.</div>
 
-<h1>13. Icirrus City <span style="font-size:1rem; color:#aaa;">(Ice)</span></h1>
+<h1 class="gym-title">13. Icirrus City <span style="font-size:1rem; color:#aaa;">(Ice)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Unova_Icirrus_City_Map.png" alt="Icirrus" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Brycen</b></u></div>
@@ -858,7 +865,7 @@
 
 <div class="pc-reset">🔄 PC RESET — (~32 mins on charm)</div>
 
-<h1>14. Opelucid City <span style="font-size:1rem; color:#aaa;">(Dragon)</span></h1>
+<h1 class="gym-title">14. Opelucid City <span style="font-size:1rem; color:#aaa;">(Dragon)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/3/3d/Unova_Opelucid_City_Map.png" alt="Opelucid">
     <div class="gym-info"><u><b>Gym Leader: Iris / Drayden</b></u></div>
@@ -878,7 +885,7 @@
 <div class="region-header">JOHTO</div>
 <hr>
 
-<h1>15. Violet City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
+<h1 class="gym-title">15. Violet City <span style="font-size:1rem; color:#aaa;">(Flying)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Johto_Violet_City_Map.png" alt="Violet" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Falkner</b></u></div>
@@ -892,7 +899,7 @@
 </div>
 <div class="note">Chance at Heatran and Blast getting hurt — continue if so.</div>
 
-<h1>16. Mahogany Town <span style="font-size:1rem; color:#aaa;">(Ice)</span></h1>
+<h1 class="gym-title">16. Mahogany Town <span style="font-size:1rem; color:#aaa;">(Ice)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/4/46/Johto_Mahogany_Town_Map.png" alt="Mahogany">
     <div class="gym-info"><u><b>Gym Leader: Pryce</b></u></div>
@@ -908,7 +915,7 @@
 
 <div class="pc-reset">🔄 PC RESET — (~26 mins on charm)</div>
 
-<h1>17. Goldenrod City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
+<h1 class="gym-title">17. Goldenrod City <span style="font-size:1rem; color:#aaa;">(Normal)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/e/ec/Johto_Goldenrod_City_Map.png" alt="Goldenrod">
     <div class="gym-info"><u><b>Gym Leader: Whitney</b></u></div>
@@ -922,7 +929,7 @@
 </div>
 <div class="note">⭐ Put <b>Heatran on the LEFT side</b> (above Blastoise in team order) — Ditto changed transform target after Halloween 2025 update.<br>Chance at Heatran getting hurt — continue if so.</div>
 
-<h1>18. Azalea Town <span style="font-size:1rem; color:#aaa;">(Bug)</span></h1>
+<h1 class="gym-title">18. Azalea Town <span style="font-size:1rem; color:#aaa;">(Bug)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Johto_Azalea_Town_Map.png" alt="Azalea" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Bugsy</b></u></div>
@@ -943,7 +950,7 @@
 </div>
 <div class="note">Chance at Heatran getting hurt — continue if so.</div>
 
-<h1 style="color:#5588cc;">[Optional] 19. Olivine City <span style="font-size:1rem; color:#aaa;">(Steel)</span></h1>
+<h1 class="gym-title" style="color:#5588cc;">[Optional] 19. Olivine City <span style="font-size:1rem; color:#aaa;">(Steel)</span></h1>
 <div class="gym-card optional-gym">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/6/65/Johto_Olivine_City_Map.png" alt="Olivine">
     <div class="gym-info"><u><b>Gym Leader: Jasmine</b></u><br>
@@ -971,7 +978,7 @@
     <span style="color:#ccc; font-size:0.88rem;">If you explode here, heal before the next gym or skip it.</span>
 </div>
 
-<h1>20. Cianwood City <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
+<h1 class="gym-title">20. Cianwood City <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/d/d8/Johto_Cianwood_City_Map.png" alt="Cianwood">
     <div class="gym-info"><u><b>Gym Leader: Chuck</b></u></div>
@@ -994,7 +1001,7 @@
 <div class="region-header">SINNOH</div>
 <hr>
 
-<h1>21. Veilstone City <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
+<h1 class="gym-title">21. Veilstone City <span style="font-size:1rem; color:#aaa;">(Fighting)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/3/32/Sinnoh_Veilstone_City_Map.png" alt="Veilstone">
     <div class="gym-info"><u><b>Gym Leader: Maylene</b></u></div>
@@ -1008,7 +1015,7 @@
 </div>
 <div class="note">Chance at Arch getting hurt — continue if so, or heal if KO'd.</div>
 
-<h1>22. Eterna City <span style="font-size:1rem; color:#aaa;">(Grass)</span></h1>
+<h1 class="gym-title">22. Eterna City <span style="font-size:1rem; color:#aaa;">(Grass)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/0/0b/Sinnoh_Eterna_City_Map.png" alt="Eterna">
     <div class="gym-info"><u><b>Gym Leader: Gardenia</b></u></div>
@@ -1022,7 +1029,7 @@
 </div>
 <div class="note">If Arch is less than 50% HP, heal after. Replace Typh if needed.</div>
 
-<h1>23. Sunyshore City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
+<h1 class="gym-title">23. Sunyshore City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Sinnoh_Sunyshore_City_Map.png" alt="Sunyshore" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Volkner</b></u></div>
@@ -1046,7 +1053,7 @@
     <span style="color:#ccc; font-size:0.88rem;">Skip the next gym if this happens, or heal and do it if you have time.</span>
 </div>
 
-<h1>24. Pastoria City <span style="font-size:1rem; color:#aaa;">(Water)</span></h1>
+<h1 class="gym-title">24. Pastoria City <span style="font-size:1rem; color:#aaa;">(Water)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/b/ba/Sinnoh_Pastoria_City_Map.png" alt="Pastoria">
     <div class="gym-info"><u><b>Gym Leader: Crasher Wake</b></u></div>
@@ -1068,7 +1075,7 @@
 
 <div class="pc-reset">🔄 PC RESET — (~10 mins on charm)</div>
 
-<h1>25. Vermilion City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
+<h1 class="gym-title">25. Vermilion City <span style="font-size:1rem; color:#aaa;">(Electric)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/5/54/Kanto_Vermilion_City_Map.png" alt="Vermilion">
     <div class="gym-info"><u><b>Gym Leader: Lt. Surge</b></u></div>
@@ -1094,7 +1101,7 @@
     <span class="heat">Heatran</span> + <span class="typh">Typhlosion (Lava Plume)</span>
 </div>
 
-<h1>26. Pewter City <span style="font-size:1rem; color:#aaa;">(Rock)</span></h1>
+<h1 class="gym-title">26. Pewter City <span style="font-size:1rem; color:#aaa;">(Rock)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/8/8e/Kanto_Pewter_City_Map.png" alt="Pewter">
     <div class="gym-info"><u><b>Gym Leader: Brock</b></u></div>
@@ -1122,7 +1129,7 @@
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion">
 </div>
 
-<h1>27. Cerulean City <span style="font-size:1rem; color:#aaa;">(Water)</span></h1>
+<h1 class="gym-title">27. Cerulean City <span style="font-size:1rem; color:#aaa;">(Water)</span></h1>
 <div class="gym-card">
     <img class="map" src="" data-filename="Kanto_Cerulean_City_Map.png" alt="Cerulean" style="display:none">
     <div class="gym-info"><u><b>Gym Leader: Misty</b></u></div>
@@ -1138,7 +1145,7 @@
     <img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion">
 </div>
 
-<h1>28. Celadon City <span style="font-size:1rem; color:#aaa;">(Grass)</span></h1>
+<h1 class="gym-title">28. Celadon City <span style="font-size:1rem; color:#aaa;">(Grass)</span></h1>
 <div class="gym-card">
     <img class="map" src="https://archives.bulbagarden.net/media/upload/b/bd/Kanto_Celadon_City_Map.png" alt="Celadon">
     <div class="gym-info"><u><b>Gym Leader: Erika</b></u></div>
