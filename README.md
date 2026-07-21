@@ -491,6 +491,37 @@
         .leveling-slot .pname { color: #c9ee9d; }
         .leveling-copy { max-width: 240px; margin: 7px auto 0; color: #aebdac; font-size: .84rem; line-height: 1.55; }
 
+        /* Floating gym-rerun timer */
+        .rerun-controller {
+            position: fixed;
+            z-index: 500;
+            right: 18px;
+            bottom: 18px;
+            width: min(330px, calc(100vw - 28px));
+            padding: 15px;
+            border: 1px solid rgba(255,179,63,.34);
+            border-radius: 19px;
+            background: rgba(7,16,14,.93);
+            box-shadow: 0 18px 55px rgba(0,0,0,.52);
+            backdrop-filter: blur(18px) saturate(135%);
+        }
+        .rerun-controller[hidden] { display: none; }
+        .rerun-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .rerun-kicker { color: #a8ce79; font-size: .68rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+        .rerun-timer { color: #fff0cf; font-size: 1.8rem; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+        .rerun-gym { margin-top: 3px; color: #d7dfd4; font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .rerun-progress { height: 5px; margin: 11px 0 12px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.09); }
+        .rerun-progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg,#80b64c,#ffb33f); transition: width .25s linear; }
+        .rerun-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+        .rerun-button { min-height: 40px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.11); border-radius: 11px; color: #eaf0e7; background: rgba(255,255,255,.06); font: inherit; font-size: .82rem; font-weight: 800; cursor: pointer; }
+        .rerun-button:hover, .rerun-button:focus-visible { border-color: rgba(255,179,63,.52); background: rgba(255,179,63,.11); }
+        .rerun-button.primary { border-color: #e58b25; color: #171008; background: linear-gradient(135deg,#ffb33f,#df7419); }
+        .rerun-button.skip { color: #ffd18a; }
+        .rerun-mode { display: flex; align-items: flex-start; gap: 9px; margin-top: 11px; padding-top: 11px; border-top: 1px solid rgba(255,255,255,.08); color: #aeb9ac; font-size: .72rem; line-height: 1.35; cursor: pointer; }
+        .rerun-mode input { width: 17px; height: 17px; flex: 0 0 auto; accent-color: #e99025; }
+        .rerun-status { margin-top: 7px; color: #849184; font-size: .68rem; }
+        .gym-title.is-current-gym { border-color: rgba(168,206,121,.72); box-shadow: 0 0 0 3px rgba(131,184,77,.11), 0 16px 45px rgba(0,0,0,.28); }
+
         .gym-card { padding: 22px; border-radius: 22px; gap: 25px; transition: border-color .25s ease, transform .25s ease; }
         .gym-card:hover { border-color: rgba(255,179,63,.28); transform: translateY(-2px); }
         .gym-card img.map { aspect-ratio: 257 / 159; object-fit: cover; image-rendering: pixelated; border: 0; border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,.34); }
@@ -530,6 +561,7 @@
             .gym-card { padding: 16px; }
             .earnings-table { display: block; overflow-x: auto; }
             .pokemon-container { grid-template-columns: 1fr; }
+            .rerun-controller { right: 10px; bottom: 10px; }
         }
         @media (min-width: 769px) and (max-width: 980px) {
             .pokemon-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -562,6 +594,26 @@
         <span class="guide-credit">Original PDF provided by the route creator/community · Credit: JinxedBoon</span>
     </div>
 </header>
+
+<aside class="rerun-controller" id="rerun-controller" aria-label="Gym rerun timer">
+    <div class="rerun-topline">
+        <div>
+            <div class="rerun-kicker">Rerun navigator</div>
+            <div class="rerun-gym" id="rerun-gym">Ready for Gym 1 of 28</div>
+        </div>
+        <div class="rerun-timer" id="rerun-timer" aria-live="polite">2:30</div>
+    </div>
+    <div class="rerun-progress" aria-hidden="true"><div class="rerun-progress-fill" id="rerun-progress-fill"></div></div>
+    <div class="rerun-buttons">
+        <button class="rerun-button primary" id="rerun-start" type="button">Start rerun</button>
+        <button class="rerun-button skip" id="rerun-skip" type="button" disabled>Skip →</button>
+    </div>
+    <label class="rerun-mode">
+        <input id="rerun-background" type="checkbox">
+        <span><b>Keep timer running in background</b><br>Off pauses the countdown while this window is inactive.</span>
+    </label>
+    <div class="rerun-status" id="rerun-status">Timer begins when you select Start rerun.</div>
+</aside>
 
 <!-- ═══════════════ TEAM ═══════════════ -->
 <h2>Requirements</h2>
@@ -1304,6 +1356,171 @@ document.querySelectorAll('img.map').forEach(img => {
         wrap.insertBefore(placeholder, caption);
     }, { once: true });
 });
+
+// ── Guided rerun timer ──────────────────────────────────────────────────────
+const GYM_SECONDS = 150;
+const gymHeadings = Array.from(document.querySelectorAll('.gym-title'));
+const rerunStart = document.getElementById('rerun-start');
+const rerunSkip = document.getElementById('rerun-skip');
+const rerunTimer = document.getElementById('rerun-timer');
+const rerunGym = document.getElementById('rerun-gym');
+const rerunFill = document.getElementById('rerun-progress-fill');
+const rerunBackground = document.getElementById('rerun-background');
+const rerunStatus = document.getElementById('rerun-status');
+
+let currentGym = -1;
+let remainingSeconds = GYM_SECONDS;
+let running = false;
+let completed = false;
+let intervalId = null;
+let deadline = 0;
+let lastTick = Date.now();
+
+function formatTimer(seconds) {
+    const safe = Math.max(0, Math.ceil(seconds));
+    return `${Math.floor(safe / 60)}:${String(safe % 60).padStart(2, '0')}`;
+}
+
+function gymName(index) {
+    return gymHeadings[index]?.textContent.replace(/\s+/g, ' ').trim() || '';
+}
+
+function updateRerunUI() {
+    rerunTimer.textContent = formatTimer(remainingSeconds);
+    rerunFill.style.width = `${Math.max(0, Math.min(100, ((GYM_SECONDS - remainingSeconds) / GYM_SECONDS) * 100))}%`;
+    if (completed) {
+        rerunGym.textContent = `Route complete · ${gymHeadings.length} gyms`;
+        rerunStatus.textContent = 'Rerun finished. Great work!';
+        rerunStart.textContent = 'Restart rerun';
+        rerunSkip.disabled = true;
+        return;
+    }
+    if (currentGym < 0) {
+        rerunGym.textContent = `Ready for Gym 1 of ${gymHeadings.length}`;
+    } else {
+        rerunGym.textContent = `Gym ${currentGym + 1} of ${gymHeadings.length} · ${gymName(currentGym)}`;
+    }
+    rerunStart.textContent = running ? 'Pause timer' : (currentGym < 0 ? 'Start rerun' : 'Resume timer');
+    rerunSkip.disabled = currentGym < 0;
+    rerunStatus.textContent = running
+        ? (rerunBackground.checked ? 'Timer continues if this window becomes inactive.' : 'Timer pauses while this window is inactive.')
+        : (currentGym < 0 ? 'Timer begins when you select Start rerun.' : 'Timer paused.');
+}
+
+function highlightAndScroll(index) {
+    gymHeadings.forEach((heading, i) => heading.classList.toggle('is-current-gym', i === index));
+    gymHeadings[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function setDeadline() {
+    deadline = Date.now() + remainingSeconds * 1000;
+    lastTick = Date.now();
+}
+
+function beginGym(index) {
+    currentGym = index;
+    remainingSeconds = GYM_SECONDS;
+    setDeadline();
+    highlightAndScroll(index);
+    updateRerunUI();
+}
+
+function finishRerun() {
+    running = false;
+    completed = true;
+    remainingSeconds = 0;
+    clearInterval(intervalId);
+    intervalId = null;
+    gymHeadings.forEach(heading => heading.classList.remove('is-current-gym'));
+    updateRerunUI();
+}
+
+function moveToNextGym() {
+    const next = currentGym + 1;
+    if (next >= gymHeadings.length) {
+        finishRerun();
+        return;
+    }
+    beginGym(next);
+}
+
+function tickRerun() {
+    if (!running) return;
+    if (document.hidden && !rerunBackground.checked) {
+        lastTick = Date.now();
+        return;
+    }
+
+    if (rerunBackground.checked) {
+        const now = Date.now();
+        if (now >= deadline) {
+            const overdueMs = now - deadline;
+            const gymsElapsed = 1 + Math.floor(overdueMs / (GYM_SECONDS * 1000));
+            const nextGym = currentGym + gymsElapsed;
+            if (nextGym >= gymHeadings.length) {
+                finishRerun();
+                return;
+            }
+            currentGym = nextGym;
+            const elapsedInGymMs = overdueMs % (GYM_SECONDS * 1000);
+            remainingSeconds = GYM_SECONDS - (elapsedInGymMs / 1000);
+            deadline = now + remainingSeconds * 1000;
+            highlightAndScroll(currentGym);
+        } else {
+            remainingSeconds = (deadline - now) / 1000;
+        }
+    } else {
+        const now = Date.now();
+        remainingSeconds = Math.max(0, remainingSeconds - (now - lastTick) / 1000);
+        lastTick = now;
+    }
+
+    if (remainingSeconds <= 0) moveToNextGym();
+    updateRerunUI();
+}
+
+function startInterval() {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(tickRerun, 250);
+}
+
+rerunStart.addEventListener('click', () => {
+    if (completed) {
+        completed = false;
+        currentGym = -1;
+        remainingSeconds = GYM_SECONDS;
+    }
+    if (currentGym < 0) beginGym(0);
+    running = !running;
+    if (running) {
+        setDeadline();
+        startInterval();
+    } else {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+    updateRerunUI();
+});
+
+rerunSkip.addEventListener('click', () => {
+    if (currentGym < 0 || completed) return;
+    moveToNextGym();
+    if (running) setDeadline();
+});
+
+rerunBackground.addEventListener('change', () => {
+    if (running) setDeadline();
+    updateRerunUI();
+});
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && running) {
+        if (!rerunBackground.checked) setDeadline();
+        tickRerun();
+    }
+});
+
+updateRerunUI();
 </script>
 </body>
 </html>
