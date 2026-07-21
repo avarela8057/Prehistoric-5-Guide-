@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -473,7 +472,7 @@
         .region-header::after { content: ""; display: block; width: 72px; height: 4px; margin: 14px auto 0; border-radius: 4px; background: linear-gradient(90deg,var(--amber),var(--ember)); }
         hr { opacity: 0; height: 0; margin: 0; }
 
-        .pokemon-container { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+        .pokemon-container { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
         .pokemon-card, .gym-card, .credits-section {
             border: 1px solid rgba(255,255,255,.09);
             background: var(--panel);
@@ -486,6 +485,11 @@
         .pokemon-card img { width: 108px; height: 108px; filter: drop-shadow(0 14px 15px rgba(0,0,0,.36)); transition: transform .25s ease; }
         .pokemon-card:hover img { transform: scale(1.08); }
         .pokemon-card .pname { font-size: 1.16rem; }
+        .leveling-slot { display: grid; place-content: center; min-height: 100%; border-style: dashed; border-color: rgba(168,206,121,.38); background: linear-gradient(145deg, rgba(76,111,57,.16), rgba(18,31,26,.72)); }
+        .leveling-slot:hover { border-color: rgba(168,206,121,.72); }
+        .leveling-icon { width: 92px; height: 92px; display: grid; place-items: center; margin: 0 auto 15px; border: 2px dashed rgba(168,206,121,.55); border-radius: 50%; color: #bce68a; font-size: 2.8rem; line-height: 1; background: rgba(131,184,77,.08); }
+        .leveling-slot .pname { color: #c9ee9d; }
+        .leveling-copy { max-width: 240px; margin: 7px auto 0; color: #aebdac; font-size: .84rem; line-height: 1.55; }
 
         .gym-card { padding: 22px; border-radius: 22px; gap: 25px; transition: border-color .25s ease, transform .25s ease; }
         .gym-card:hover { border-color: rgba(255,179,63,.28); transform: translateY(-2px); }
@@ -525,6 +529,10 @@
             .hero h1 { font-size: clamp(3.1rem, 18vw, 5rem); }
             .gym-card { padding: 16px; }
             .earnings-table { display: block; overflow-x: auto; }
+            .pokemon-container { grid-template-columns: 1fr; }
+        }
+        @media (min-width: 769px) and (max-width: 980px) {
+            .pokemon-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
         /* The hero already contains the complete identity and credit line. */
@@ -623,6 +631,13 @@
         <span style="color:#aaa; font-size:0.78rem;">Optimal: 31 Atk / 15+ Def / 20+ SpD / 15+ HP<br>
         High Def IVs: keeps Torkoal alive to Explode when flinched</span><br>
         <div class="ivs">– Explosion<br>– Helping Hand</div>
+    </section>
+
+    <section class="pokemon-card leveling-slot" aria-label="Open party slot for the Pokémon being leveled">
+        <div class="leveling-icon" aria-hidden="true">+</div>
+        <div class="pname">Leveling Slot</div>
+        <div class="item-line">Party Slot #6</div>
+        <p class="leveling-copy">Place the Pokémon you want to level here so it receives experience throughout the gym rerun.</p>
     </section>
 
 </div>
